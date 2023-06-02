@@ -1,0 +1,56 @@
+.input__name{
+    margin-bottom: 10px;
+}
+
+.btn-add{
+    margin-top: 3rem;
+}
+
+.input__description{
+    border:2px solid #333;
+    padding: 10px;  
+}
+
+.input__date{
+    width: 100%;
+    border:2px solid #333;
+    padding: 5px 10px;
+    position: relative;
+}
+
+.wrap{
+    position: relative;
+}
+
+.input__piority{
+    width: 100%;
+    border:2px solid #333;
+    padding: 5px 10px;
+}
+
+
+
+#calendar-alt{
+    height: 100%;
+    width: 30px;
+    right: 100px;
+    top: 0;
+    background-color: #fff;
+    border: 2px solid #333;
+    position: absolute;
+    font-weight: 10px;
+}
+
+.input__date-display{
+    position: absolute;
+}
+
+.input__date::after{
+    content: "";
+    background-color: #333;
+    right: 40px;
+    top:0;
+    height: 100%;
+    width: 1px;
+    position: absolute;
+}

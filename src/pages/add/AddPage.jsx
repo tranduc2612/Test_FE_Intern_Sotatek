@@ -45,6 +45,9 @@ function AddPage() {
 			)}
 			<main>
 				<form>
+					<Link style={{ textAlign: "left", display: "block" }} to="/">
+						{"<"} Home
+					</Link>
 					<Title>New Task</Title>
 					<Form onSubmit={handleAdd} type={"Add"} />
 				</form>

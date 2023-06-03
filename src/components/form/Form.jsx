@@ -82,7 +82,7 @@ function Form({ onSubmit, type, data }) {
 
 				<div className="group__form">
 					<label className="label__piority" htmlFor="piority">
-						Piority
+						Priority
 					</label>
 					<select
 						className="input__piority"

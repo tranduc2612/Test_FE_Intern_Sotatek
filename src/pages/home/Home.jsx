@@ -4,6 +4,7 @@ import Title from "../../components/title/Title";
 import Todo from "../../components/todo/Todo";
 import "./Home.css";
 import Context from "../../store/Context";
+import { Link } from "react-router-dom";
 
 function Home() {
 	const state = useContext(Context);
@@ -13,11 +14,15 @@ function Home() {
 	const handleRemoveList = () => {
 		const newList = state[0].filter((e) => !selectedId.includes(e.id));
 		state[1](newList);
+		setSelectedId([]);
 		localStorage.setItem("data", JSON.stringify(newList));
 	};
 	return (
 		<main>
 			<form>
+				<Link style={{ textAlign: "right", display: "block" }} to="/create">
+					Create {">"}
+				</Link>
 				<Title>To Do List</Title>
 				<div className="group__form group__search">
 					<input

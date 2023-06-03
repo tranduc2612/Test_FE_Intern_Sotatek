@@ -1,0 +1,18 @@
+.bulk__form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    background-color: #e0e0e0;
+}
+
+.bulk__right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-bulk{
+    width: 100px;
+}

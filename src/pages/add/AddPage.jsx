@@ -1,80 +1,55 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import Title from "../../components/title/Title";
 import "./AddPage.css";
-import Button from "./../../components/button/Button";
+import Alert from "../../components/alerts/Alert";
+import { Link, useNavigate } from "react-router-dom";
+import Form from "./../../components/form/Form";
+import Context from "../../store/Context";
+
 function AddPage() {
-	const inputName = useRef();
-	const inputDescription = useRef();
-	const inputDate = useRef();
-	const inputPiority = useRef();
+	const [alert, setAlert] = useState(false);
+	const navigate = useNavigate();
+	const state = useContext(Context);
 
-	const handleSubmit = (event) => {
-		event.preventDefault();
-		const nameValue = inputName.current.value;
-		const descriptionValue = inputDescription.current.value;
-		const dateValue = inputDate.current.value;
-		const Piority = inputPiority.current.value;
-		console.log(nameValue, descriptionValue, dateValue, Piority);
+	const handleAdd = (name, date, des, piority) => {
+		// xử lí ở thêm ở đây
+		const newObject = {
+			id: Math.random().toFixed(5),
+			name,
+			date,
+			description: des,
+			piority,
+		};
+		const newArr = [...state[0], newObject];
+		const setList = state[1];
+		setList(newArr);
+		localStorage.setItem("data", JSON.stringify(newArr));
+		setAlert(true);
+		setTimeout(() => {
+			navigate("/");
+		}, 10000);
 	};
-	return (
-		<main>
-			<form>
-				<Title>New Task</Title>
-				<div className="group__form group__name">
-					<input
-						className="input__name"
-						type="text"
-						placeholder="Add new task ..."
-						ref={inputName}
-					/>
-				</div>
-				<div className="group__form group__description">
-					<label className="label__description" htmlFor="description">
-						Description
-					</label>
-					<textarea
-						className="input__description"
-						name="description"
-						rows="12"
-						ref={inputDescription}
-					></textarea>
-				</div>
-				<div className="group__multiple">
-					<div className="group__form">
-						<label className="label__date" htmlFor="date">
-							Due Date
-						</label>
-						<input
-							className="input__date"
-							type="date"
-							name="date"
-							ref={inputDate}
-						/>
-					</div>
 
-					<div className="group__form">
-						<label className="label__piority" htmlFor="piority">
-							Piority
-						</label>
-						<select
-							className="input__piority"
-							ref={inputPiority}
-							name="piority"
-						>
-							<option value="low">low</option>
-							<option value="normal">normal</option>
-							<option value="hight">hight</option>
-						</select>
-					</div>
-				</div>
-				<Button
-					className="btn-add"
-					type="success"
-					handleSubmit={handleSubmit}
-					content="Add"
+	const handleConfirm = () => {
+		navigate("/");
+	};
+
+	return (
+		<>
+			{!alert ? null : (
+				<Alert
+					type={"success-alert"}
+					message={"Create Success"}
+					handleConfirm={handleConfirm}
 				/>
-			</form>
-		</main>
+			)}
+			<main>
+				<form>
+					<Title>New Task</Title>
+					<Form onSubmit={handleAdd} type={"Add"} />
+				</form>
+			</main>
+		</>
 	);
 }
 

@@ -1,8 +1,8 @@
 import "./Button.css";
 
-function Button({ type, content, className, handleSubmit }) {
+function Button({ type, content, className, onSubmit }) {
 	return (
-		<button onClick={handleSubmit} className={`${type} ${className} btn`}>
+		<button onClick={onSubmit} className={`${type} ${className} btn`}>
 			{content}
 		</button>
 	);

@@ -1,0 +1,42 @@
+.todo__item{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    border: 1px solid #333;
+    padding: 15px;
+}
+
+.todo__left,.todo__right{
+    display:flex;
+    align-items:center;
+}
+
+.btn-list{
+    margin: 0 10px;
+    width: 100px;
+}
+
+.todo__left input{
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.wrap{
+    border:2px solid #333;
+    margin-bottom: 20px;
+}
+
+.wrap__form{
+    position: relative;
+    height:0;
+    overflow: hidden;
+    transition:0.5s;
+    overflow-y: auto;
+    
+}
+
+.wrap__form.active{
+    height:100%;
+    padding:20px;
+}

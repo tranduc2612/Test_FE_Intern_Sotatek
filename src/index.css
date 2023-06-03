@@ -6,6 +6,11 @@
   margin:0;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 li,ul{
   list-style: none;
 }
@@ -60,16 +65,34 @@ label{
   justify-content:space-between;
 }
 
-.success{
+.bg-success{
   background-color:#5cb85c;
+}
+.bg-error{
+  background-color:#d9534f;
+}
+.bg-detail{
+  background-color:#00bcd4;
+}
+
+.bg-primary{
+  background-color: #2196f3;
+}
+
+.success{
+  color:#5cb85c;
 }
 
 .error{
-  background-color:#d9534f;
+  color:#d9534f;
 }
 
 .detail{
-  background-color:#00bcd4;
+  color:#00bcd4;
+}
+
+.primary{
+  color:#2196f3;
 }
 
 @media (max-width: 1250px){

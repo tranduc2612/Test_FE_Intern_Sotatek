@@ -7,6 +7,14 @@ import Context from "../../store/Context";
 
 function Home() {
 	const state = useContext(Context);
+	const [selectedId, setSelectedId] = useState([]);
+	const [search, setSearch] = useState("");
+
+	const handleRemoveList = () => {
+		const newList = state[0].filter((e) => !selectedId.includes(e.id));
+		state[1](newList);
+		localStorage.setItem("data", JSON.stringify(newList));
+	};
 	return (
 		<main>
 			<form>
@@ -16,16 +24,24 @@ function Home() {
 						className="input__search"
 						type="text"
 						placeholder="Search ..."
+						onChange={(e) => setSearch(e.target.value)}
 					/>
 					{state[0]
 						.sort((a, b) => new Date(a.date) - new Date(b.date))
+						.filter((e) => e.name.toLowerCase().includes(search.toLowerCase()))
 						.map((e) => {
-							return <Todo key={e.id} data={e} onRemove={state[1]} />;
+							return (
+								<Todo
+									key={e.id}
+									data={e}
+									onRemove={state[1]}
+									onSelect={[selectedId, setSelectedId]}
+								/>
+							);
 						})}
 				</div>
 			</form>
-
-			<Bulk />
+			{selectedId.length ? <Bulk onRemoveList={handleRemoveList} /> : <></>}
 		</main>
 	);
 }

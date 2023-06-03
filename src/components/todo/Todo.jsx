@@ -4,7 +4,7 @@ import Button from "./../button/Button";
 import "./Todo.css";
 import Context from "../../store/Context";
 
-function Todo({ data, onRemove }) {
+function Todo({ data, onRemove, onSelect }) {
 	const updateForm = useRef("");
 	const state = useContext(Context);
 
@@ -24,11 +24,39 @@ function Todo({ data, onRemove }) {
 		onRemove(newArr);
 		localStorage.setItem("data", JSON.stringify(newArr));
 	};
+
+	const handleUpdate = (name, date, description, piority) => {
+		console.log(name, date, description, piority);
+		console.log(data.id);
+		const newObjectData = {
+			name,
+			date,
+			description,
+			piority,
+		};
+		const newList = state[0].map((e) =>
+			e.id === data.id ? { ...e, ...newObjectData } : e
+		);
+		localStorage.setItem("data", JSON.stringify(newList));
+		state[1](newList);
+	};
+
+	const handleBulk = (e) => {
+		if (e.target.checked == true) {
+			const newBulk = [...onSelect[0], data.id];
+			onSelect[1](newBulk);
+		} else {
+			const newBulk = onSelect[0].filter((e) => {
+				return e !== data.id;
+			});
+			onSelect[1](newBulk);
+		}
+	};
 	return (
 		<div className="wrap">
 			<div className="todo__item">
 				<div className="todo__left">
-					<input type="checkbox" />
+					<input type="checkbox" onClick={handleBulk} />
 					<h3 className="todo__name">{data.name}</h3>
 				</div>
 				<div className="todo__right">
@@ -47,7 +75,7 @@ function Todo({ data, onRemove }) {
 				</div>
 			</div>
 			<div className="wrap__form" ref={updateForm}>
-				<Form type="update" data={data} />
+				<Form type="update" data={data} onSubmit={handleUpdate} />
 			</div>
 		</div>
 	);

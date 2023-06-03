@@ -1,6 +1,6 @@
 import Button from "./../button/Button";
 import "./Bulk.css";
-function Bulk() {
+function Bulk({ onRemoveList }) {
 	return (
 		<>
 			<div className="bulk__form">
@@ -9,7 +9,12 @@ function Bulk() {
 				</div>
 				<div className="bulk__right">
 					<Button className="btn-bulk" content="Done" type="bg-primary" />
-					<Button className="btn-bulk" content="Remove" type="bg-error" />
+					<Button
+						className="btn-bulk"
+						onSubmit={onRemoveList}
+						content="Remove"
+						type="bg-error"
+					/>
 				</div>
 			</div>
 		</>

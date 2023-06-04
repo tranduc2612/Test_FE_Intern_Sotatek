@@ -40,3 +40,36 @@
     height:100%;
     padding:20px;
 }
+
+@media (max-width: 555px){
+    .todo__name{
+        font-size:1rem;
+    }
+
+    
+    .btn-list{
+        width: 70px;
+        padding: 5px;
+    }
+
+    .todo__item{
+        padding:5px;
+    }
+  }
+  
+  @media (max-width: 398px){
+    .todo__name{
+        font-size:0.7rem;
+    }
+
+    
+    .btn-list{
+        width: 60px;
+    }
+
+    .todo__left input{
+        margin-right: 5px;
+        width: 10px;
+        height: 10px;
+    }
+  }
